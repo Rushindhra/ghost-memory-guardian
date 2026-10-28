@@ -1,0 +1,21 @@
+# private data and models never go into Git
+/data/*
+!/data/.gitkeep
+/models/*
+!/models/.gitkeep
+ghost.config.json
+*.sqlite3
+*.sqlite3-*
+ghost-backup*.zip
+# environments and build output
+.venv/
+venv/
+node_modules/
+frontend/dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+*.whl
+*.log
+.DS_Store

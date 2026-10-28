@@ -1,0 +1,12 @@
+# Optional convenience. Ollama runs on the HOST (so GPU/CPU settings stay yours); the container reaches it via host-gateway.
+# The port is published on 127.0.0.1 only, so nothing outside this computer can reach your archive.
+services:
+  ghost:
+    build: .
+    ports: ["127.0.0.1:8000:8000"]
+    environment:
+      GHOST_OLLAMA_URL: http://host.docker.internal:11434
+      GHOST_ALLOW_REMOTE_LLM: "true"   # host.docker.internal is not loopback inside the container; it is still YOUR machine
+      GHOST_ALLOWED_HOSTS: '["localhost","127.0.0.1"]'
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    volumes: ["./data:/app/data", "./models:/app/models"]

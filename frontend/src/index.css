@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/instrument-sans";
+
+/* Palette: midnight navy + candlelight amber. All text colours pass WCAG AA on the surfaces they are used on. */
+@theme {
+  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-sans: "Instrument Sans Variable", system-ui, sans-serif;
+  --color-ink-950: #0a0f1e;
+  --color-ink-900: #0f1629;
+  --color-ink-800: #161f38;
+  --color-ink-700: #202b4a;
+  --color-ink-600: #2c3a60;
+  --color-paper: #ece6d8;
+  --color-muted: #a7acc0;
+  --color-amber-300: #f7cb86;
+  --color-amber-400: #f2b45a;
+  --color-amber-500: #e29a2e;
+  --color-mist: #9db8dc;
+  --color-ok: #8fd0a4;
+  --color-warn: #f0c36a;
+  --color-bad: #f08b7b;
+}
+
+:root { color-scheme: dark; }
+html, body, #root { min-height: 100%; }
+body {
+  background: var(--color-ink-950);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+/* soft candle-lit vignette behind everything */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(60rem 36rem at 85% -10%, rgb(242 180 90 / 0.09), transparent 60%),
+    radial-gradient(50rem 30rem at -10% 110%, rgb(157 184 220 / 0.07), transparent 60%);
+}
+
+:focus-visible { outline: 2px solid var(--color-amber-400); outline-offset: 2px; border-radius: 6px; }
+
+@layer components {
+  .font-display { font-family: var(--font-display); font-variation-settings: "SOFT" 50, "WONK" 0; }
+  .card { @apply rounded-2xl border border-ink-700 bg-ink-900/80 p-5 shadow-[0_1px_0_rgb(255_255_255/0.03)_inset]; }
+  .card-hover { @apply transition-colors hover:border-amber-400/50; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-ink-600 bg-ink-800 px-4 py-2 text-sm font-medium text-paper transition-colors hover:border-amber-400/60 hover:bg-ink-700 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply border-amber-400 bg-amber-400 text-ink-950 hover:bg-amber-300 hover:border-amber-300; }
+  .btn-danger { @apply border-bad/60 text-bad hover:bg-bad/10 hover:border-bad; }
+  .btn-ghost { @apply border-transparent bg-transparent hover:bg-ink-800; }
+  .input { @apply w-full rounded-lg border border-ink-600 bg-ink-950 px-3 py-2 text-sm text-paper placeholder:text-muted/70 focus:border-amber-400 focus:outline-none; }
+  .label { @apply mb-1 block text-xs font-medium uppercase tracking-wider text-muted; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full border border-ink-600 bg-ink-800 px-2.5 py-0.5 text-xs text-paper/90; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.18em] text-amber-400; }
+  .prose-ghost p { @apply mb-4 leading-relaxed; }
+}
+
+/* ---- restrained spectral motion (all disabled for reduced-motion users) ---- */
+@keyframes flicker { 0%,100% { opacity: 1 } 45% { opacity: .86 } 50% { opacity: .96 } 70% { opacity: .9 } }
+@keyframes drift { from { transform: translateY(0) } to { transform: translateY(-14px) } }
+@keyframes rise { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+@keyframes mist { 0% { transform: translateX(-4%) } 100% { transform: translateX(4%) } }
+.candle { animation: flicker 4.5s ease-in-out infinite; }
+.rise { animation: rise .6s ease both; }
+.ghost-float { animation: drift 5s ease-in-out infinite alternate; }
+
+/* Ghost Mode atmospheres */
+.stage { position: relative; isolation: isolate; overflow: hidden; border-radius: 1.25rem; }
+.stage-ghost { background: radial-gradient(40rem 22rem at 50% 0%, rgb(157 184 220 / .14), transparent 70%), #0a0f1e; }
+.stage-ghost::after { content: ""; position: absolute; inset: -20% -10%; z-index: -1; pointer-events: none;
+  background: radial-gradient(30rem 8rem at 30% 80%, rgb(157 184 220 / .09), transparent 70%); animation: mist 14s ease-in-out infinite alternate; }
+.stage-spooky { background: radial-gradient(40rem 22rem at 50% 0%, rgb(120 140 200 / .18), transparent 70%), #070a15; }
+.stage-remembrance { background: radial-gradient(40rem 24rem at 50% 0%, rgb(247 203 134 / .16), transparent 70%), #1a1410; }
+.paragraph-reveal > * { animation: rise .9s ease both; }
+.paragraph-reveal > *:nth-child(2) { animation-delay: .35s } .paragraph-reveal > *:nth-child(3) { animation-delay: .7s }
+.paragraph-reveal > *:nth-child(4) { animation-delay: 1.05s } .paragraph-reveal > *:nth-child(5) { animation-delay: 1.4s }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

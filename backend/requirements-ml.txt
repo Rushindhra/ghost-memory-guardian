@@ -1,0 +1,5 @@
+# Optional local-AI extras. Install with:  pip install -r requirements-ml.txt
+# sentence-transformers pulls in PyTorch (large). On CPU-only machines use the CPU wheel index, see docs/INSTALL.md.
+sentence-transformers==6.2.0
+faster-whisper==1.2.1
+huggingface_hub==2.3.0

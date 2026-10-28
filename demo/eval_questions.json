@@ -1,0 +1,24 @@
+{
+  "_label": "Ground-truth labels for the synthetic archive. 'relevant' lists memory ids that contain the answer. Unsupported questions have an empty list and must be rejected.",
+  "questions": [
+    {"q": "Who taught Lily to bake and how was the dough kneaded?", "relevant": ["demo-001"]},
+    {"q": "What happened during the flood at Alder Creek?", "relevant": ["demo-002"]},
+    {"q": "Where did my grandfather work and what did he repair?", "relevant": ["demo-003", "demo-010"]},
+    {"q": "How did Rosa and Elias first meet?", "relevant": ["demo-004"]},
+    {"q": "What did Aunt Marisol write about the orange trees?", "relevant": ["demo-005"]},
+    {"q": "¿Cómo preparaba mi tía el arroz con leche en Navidad?", "relevant": ["demo-006"]},
+    {"q": "When and how did the family move to Alder Creek?", "relevant": ["demo-007"]},
+    {"q": "Who built the treehouse and what did the sign say?", "relevant": ["demo-008"]},
+    {"q": "Tell me about Lily's wedding and the veil she wore", "relevant": ["demo-009", "demo-004"]},
+    {"q": "What did the railway colleagues give Elias when he retired?", "relevant": ["demo-010"]},
+    {"q": "What advice did Rosa give Tomas about being kind?", "relevant": ["demo-011"]},
+    {"q": "What happened during the ice storm when the power failed?", "relevant": ["demo-012"]},
+    {"q": "What did Daniel bring on his first visit?", "relevant": ["demo-013"]},
+    {"q": "दिवाली पर परिवार क्या करता था?", "relevant": ["demo-014"]},
+    {"q": "What is the capital of Australia?", "relevant": []},
+    {"q": "What was the name of my grandfather's pet parrot?", "relevant": []},
+    {"q": "How much did the family pay for their first car?", "relevant": []},
+    {"q": "Which football team did Tomas support in 1990?", "relevant": []},
+    {"q": "Explain how photosynthesis works", "relevant": []}
+  ]
+}
